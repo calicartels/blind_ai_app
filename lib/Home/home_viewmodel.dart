@@ -56,7 +56,7 @@ class HomeViewModel extends BaseViewModel {
       listen = false;
       speech.stop();
       notifyListeners();
-      //setUpListen();
+      setUpListen();
     }
 
     setSystemFree();
@@ -68,7 +68,7 @@ class HomeViewModel extends BaseViewModel {
         text.contains("blind ai")) {
       if (text.contains("sos")) {
         onTapOne();
-      } else if (text.contains("detect")) {
+      } else if (text.contains("object")) {
         onTapThree();
       } else if (text.contains("currency")) {
         onTapFour();

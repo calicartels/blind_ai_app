@@ -80,11 +80,15 @@ class HomeView extends StatelessWidget {
                               ],
                             ),
                             verticalSpaceMedium,
-                            const Text(
-                              "🕶️",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 40),
+                            Image.asset(
+                              "assets/icons/logo_pic.png",
+                              scale: 30,
                             ),
+                            // const Text(
+                            //   "🕶️",
+                            //   style:
+                            //       TextStyle(color: Colors.white, fontSize: 40),
+                            // ),
                             // const Icon(
                             //   Icons.arrow_upward,
                             //   color: Colors.black,

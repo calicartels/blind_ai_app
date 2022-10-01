@@ -9,8 +9,7 @@ Future<String> apiReadText({required String path}) async {
     "file",
     await MultipartFile.fromFile(path, filename: "pic-name.png"),
   ));
-  var response = await dio.post(
-      'http://akiladfgfasdf.pythonanywhere.com/detected_txt',
+  var response = await dio.post('http://liraj.pythonanywhere.com/detected_txt',
       data: formData);
   print(response.data.toString());
   return response.data.toString();

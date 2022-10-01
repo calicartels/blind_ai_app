@@ -9,8 +9,8 @@ Future<String> apiObject({required String path}) async {
     "file",
     await MultipartFile.fromFile(path, filename: "pic-name.png"),
   ));
-  var response = await dio
-      .post('http://stripan.pythonanywhere.com/detected_obj', data: formData);
+  var response = await dio.post('http://liraj.pythonanywhere.com/detected_obj',
+      data: formData);
   print(response.data.toString());
   return response.data.toString();
 }

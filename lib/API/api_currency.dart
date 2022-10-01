@@ -9,7 +9,7 @@ Future<String> apiCurrency({required String path}) async {
     "file",
     await MultipartFile.fromFile(path, filename: "pic-name.png"),
   ));
-  var response = await dio.post('http://stripan.pythonanywhere.com/currency',
+  var response = await dio.post('http://liraj.pythonanywhere.com/currency',
       data: formData);
   print(response.data.toString());
   return response.data.toString();
