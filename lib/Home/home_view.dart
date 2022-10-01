@@ -79,12 +79,17 @@ class HomeView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            verticalSpaceRegular,
-                            const Icon(
-                              Icons.arrow_upward,
-                              color: Colors.black,
-                              size: 50,
+                            verticalSpaceMedium,
+                            const Text(
+                              "🕶️",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 40),
                             ),
+                            // const Icon(
+                            //   Icons.arrow_upward,
+                            //   color: Colors.black,
+                            //   size: 50,
+                            // ),
                           ],
                         ),
                       ),
@@ -262,7 +267,10 @@ class HomeView extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 20),
                             width: screenWidth(context),
-                            color: Colors.black,
+                            decoration: const BoxDecoration(
+                                color: Colors.black,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
                             child: const Center(
                               child: Icon(
                                 Icons.mic,

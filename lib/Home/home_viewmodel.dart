@@ -9,9 +9,78 @@ import '../API/api_currency.dart';
 import '../API/api_sos.dart';
 import '../Image/image.dart';
 import 'package:camera/camera.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class HomeViewModel extends BaseViewModel {
   TextToSpeech tts = TextToSpeech();
+
+  stt.SpeechToText speech = stt.SpeechToText();
+
+  bool listen = false;
+
+  String text = "";
+
+  Future<void> setUpListen() async {
+    setSystemLoading();
+
+    setUpVoice();
+
+    await tts.speak("Speak Now");
+
+    bool available = false;
+
+    if (!listen) {
+      available = await speech.initialize(
+          onStatus: (val) {
+            if (val == "done") {
+              directText();
+            }
+          },
+          onError: (val) => print("THIS IS HERE 2: $val"));
+      notifyListeners();
+    }
+
+    if (available) {
+      listen = true;
+
+      speech.listen(
+          listenFor: const Duration(seconds: 20),
+          onResult: (val) {
+            text = val.recognizedWords;
+            print("TALKS: $text");
+            text = text.toLowerCase();
+          });
+
+      print("TALKS FILL: $text");
+    } else {
+      listen = false;
+      speech.stop();
+      notifyListeners();
+      //setUpListen();
+    }
+
+    setSystemFree();
+  }
+
+  Future<void> directText() async {
+    if (text.contains("blind eye") ||
+        text.contains("blind i") ||
+        text.contains("blind ai")) {
+      if (text.contains("sos")) {
+        onTapOne();
+      } else if (text.contains("detect")) {
+        onTapThree();
+      } else if (text.contains("currency")) {
+        onTapFour();
+      } else if (text.contains("read")) {
+        onTapTwo();
+      } else {
+        tts.speak("Try Again");
+      }
+    } else {
+      tts.speak("Try with blind eye");
+    }
+  }
 
   bool _isLoading = false;
   get isLoading => _isLoading;
@@ -107,5 +176,7 @@ class HomeViewModel extends BaseViewModel {
     setSystemFree();
   }
 
-  void onDoubleTapVoice() {}
+  Future<void> onDoubleTapVoice() async {
+    await setUpListen();
+  }
 }
