@@ -16,7 +16,7 @@
         </intent>
     </queries>
     <application
-        android:label="blind_ai"
+        android:label="blind.ai"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
